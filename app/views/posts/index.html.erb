@@ -1,0 +1,24 @@
+<h1>掲示板</h1>
+
+<%= form_for(@post) do |f| %>
+  <% if @post.errors.any? %>
+    <% @post.errors.full_messages.each do |err| %>
+      <font color="red"><%= err %></font><br>
+    <% end %>
+  <% end %>
+
+  <div>名前 : <%= f.text_field :name %></div>
+  <div>e-mail : <%= f.text_field :email %></div>
+  <div>コメント : <%= f.text_area :comment %></div>
+  <%= f.submit %><br>
+<% end %>
+<hr>
+
+<% @posts.each do |post| %>
+  <%= post.id %> : <%= post.name %>
+    <%= " : " + post.email if post.email.present? %> : <%= post.created_at %>
+  <br>
+  <pre><%= post.comment %></pre>
+  <br>
+<% end %>
+<%= link_to '全て見る', post_index_all_path(@posts) %>

@@ -1,0 +1,10 @@
+<h1>掲示板</h1>
+
+<% @posts.each do |post| %>
+  <%= post.id %> : <%= post.name %>
+    <%= " : " + post.email if post.email.present? %> : <%= post.created_at %>
+  <br>
+  <pre><%= post.comment %></pre>
+  <br>
+<% end %>
+<%= link_to '戻る', root_path %>
